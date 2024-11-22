@@ -174,5 +174,3 @@ searchButton.addEventListener("click", () => {
         console.log("please enter a city name")
     )
 })
-
-
