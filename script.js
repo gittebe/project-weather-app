@@ -14,7 +14,6 @@ const sunset = document.getElementById('sunset')
 const iconCurrent = document.getElementById('currentWeatherImage')
 const header = document.getElementById('header')
 
-
 // function to create new URL for forecast based on the users input
 const createForecastURL = (cityName) => {
     return `${BASE_URL}forecast?q=${cityName}&units=metric&APPID=${API_KEY}`
@@ -30,12 +29,10 @@ const convertUnixToTime = (unixTime, timeZone) => {
     const time = unixTime * 1000
     const date = new Date(time)
     const localTime = new Date(date.getTime() + timeZone * 1000)
-
     const hours = localTime.getUTCHours()
     const minutes = "0" + localTime.getUTCMinutes()
     return `${hours}:${minutes.substr(-2)}`
 }
-
 
 // to get the weather data for the current weather
 const fetchWeatherData = async (cityName) => {
@@ -46,9 +43,7 @@ const fetchWeatherData = async (cityName) => {
             throw new Error('Failed to fetch weather data')
         }
         const data = await response.json()
-        // console.log(data)
         updateHTML(data)
-
     } catch (error) {
         console.log(error)
     }
@@ -65,17 +60,13 @@ const fetchForecastData = async (cityName) => {
         const dataForecast = await response.json()
         console.log(dataForecast)
         updateForecastHTML(dataForecast)
-
     } catch (error) {
         console.log(error)
     }
 }
 
 // update HTML current weather
-
 const updateHTML = (data) => {
-    console.log(data)
-
     cityName.innerText = data.name
     weather.innerText = data.weather[0].description
 
@@ -84,7 +75,6 @@ const updateHTML = (data) => {
     temperature.innerText = `${roundedTemp}°C`
 
     // the local time for the specific city
-
     const sunriseTime = convertUnixToTime(data.sys.sunrise, data.timezone)
     const sunsetTime = convertUnixToTime(data.sys.sunset, data.timezone)
 
@@ -109,14 +99,11 @@ const updateHTML = (data) => {
 }
 
 // update HTML for forecast weather
-
 // Array with weekdays
 const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 // Function for HTML inputs
 const updateForecastHTML = (dataForecast) => {
-    console.log(dataForecast)
-
     const forecasts = dataForecast.list
 
     // filters the forecast for 12 AM (midnight) each day
@@ -130,7 +117,6 @@ const updateForecastHTML = (dataForecast) => {
         const dateTime = new Date(maxForecast.dt_txt)
         return dateTime.getHours() === 12
     })
-
     let forecastHTML = ''
 
     // Loops
@@ -143,7 +129,6 @@ const updateForecastHTML = (dataForecast) => {
         const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`
 
         // get weekdays
-
         const dateTime = new Date(filteredMaxForecasts[i].dt_txt)
         const dayOfWeek = weekdays[dateTime.getDay()]
 
@@ -167,11 +152,9 @@ menu.addEventListener("click", () => {
 })
 
 // To close the search window users can either click on the X or somewhere else on the window 
-
 closeWindow.addEventListener("click", () => {
     searchWindow.style.display = "none"
 })
-
 searchWindow.addEventListener("click", (event) => {
     if (event.target == searchWindow) {
         searchWindow.style.display = "none"
@@ -179,7 +162,6 @@ searchWindow.addEventListener("click", (event) => {
 })
 
 // Event-Listener to be able to search a cities
-
 searchButton.addEventListener("click", () => {
     // gets the name of the city from the input field
     const city = cityInput.value

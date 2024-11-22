@@ -1,5 +1,4 @@
 /* for iPhone XR */
-
 body {
     padding: 0;
     max-width: 100%;
@@ -40,24 +39,31 @@ header {
 /* Search town window */
 .search-location-window {
     z-index: 1;
-    width: 100%;
-    height: 80%;
-    background-color: #707070;
+    width: 200px;
+    height: 100px;
     position: fixed;
     left: 0;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
 
 .search-city {
+    display: flex;
     height: 30px;
-    min-width: 100px;
+    width: 100px;
     max-width: 300px;
     border-radius: 10px;
     border: none;
-    margin: 20px;
+    margin: 10px 0px 10px 0px;
 }
 
 .search-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 30px;
     border-radius: 10px;
     border: none;
@@ -65,7 +71,6 @@ header {
 
 .searchLocationContainer {
     position: relative;
-    margin: 15%;
     padding: 20px;
     color: #FFFFFF;
     background-color: #8589FF;
@@ -198,7 +203,7 @@ main {
     font-size: 20px;
 }
 
-/* Pablets and iPads */
+/* Tablets and iPads */
 @media(min-width:667px) {
     .weather-container {
         justify-content: center;
